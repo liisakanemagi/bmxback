@@ -1,5 +1,7 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.favoritelocation;
 
+import ee.valiit.bmxback.persistence.location.Location;
+import ee.valiit.bmxback.persistence.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -8,8 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "location_tag", schema = "bmx")
-public class LocationTag {
+@Table(name = "favorite_location", schema = "bmx")
+public class FavoriteLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -17,12 +19,12 @@ public class LocationTag {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tag_id", nullable = false)
-    private Tag tag;
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
 
 }

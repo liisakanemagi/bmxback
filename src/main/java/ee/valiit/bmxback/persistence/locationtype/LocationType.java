@@ -1,4 +1,4 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.locationtype;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "role", schema = "bmx")
-public class Role {
+@Table(name = "location_type", schema = "bmx")
+public class LocationType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,5 +20,10 @@ public class Role {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Size(max = 10)
+    @NotNull
+    @Column(name = "color_code", nullable = false, length = 10)
+    private String colorCode;
 
 }

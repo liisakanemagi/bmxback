@@ -1,5 +1,6 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.albumimage;
 
+import ee.valiit.bmxback.persistence.album.Album;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

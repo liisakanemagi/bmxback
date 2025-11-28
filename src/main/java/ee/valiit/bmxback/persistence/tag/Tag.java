@@ -1,4 +1,4 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.tag;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

@@ -1,5 +1,7 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.locationtag;
 
+import ee.valiit.bmxback.persistence.tag.Tag;
+import ee.valiit.bmxback.persistence.location.Location;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -8,8 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "location_image", schema = "bmx")
-public class LocationImage {
+@Table(name = "location_tag", schema = "bmx")
+public class LocationTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -21,7 +23,8 @@ public class LocationImage {
     private Location location;
 
     @NotNull
-    @Column(name = "image_data", nullable = false)
-    private byte[] imageData;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "tag_id", nullable = false)
+    private Tag tag;
 
 }

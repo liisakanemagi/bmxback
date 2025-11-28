@@ -1,4 +1,4 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.role;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -6,13 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 @Entity
-@Table(name = "county", schema = "bmx")
-public class County {
+@Table(name = "role", schema = "bmx")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -22,14 +20,5 @@ public class County {
     @NotNull
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "zoom_level")
-    private Integer zoomLevel;
-
-    @Column(name = "lng", precision = 9, scale = 6)
-    private BigDecimal lng;
-
-    @Column(name = "lat", precision = 9, scale = 6)
-    private BigDecimal lat;
 
 }
