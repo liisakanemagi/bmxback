@@ -1,17 +1,17 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.favouritelocation;
 
+import ee.valiit.bmxback.persistence.location.Location;
+import ee.valiit.bmxback.persistence.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
-
 @Getter
 @Setter
 @Entity
-@Table(name = "location_rating", schema = "bmx")
-public class LocationRating {
+@Table(name = "favorite_location", schema = "bmx")
+public class FavoriteLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,13 +26,5 @@ public class LocationRating {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
-
-    @NotNull
-    @Column(name = "rating", nullable = false)
-    private Integer rating;
-
-    @NotNull
-    @Column(name = "created_at", nullable = false)
-    private Instant createdAt;
 
 }

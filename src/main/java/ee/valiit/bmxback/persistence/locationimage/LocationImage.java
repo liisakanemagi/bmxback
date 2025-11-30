@@ -1,5 +1,6 @@
-package ee.valiit.bmxback.persistence;
+package ee.valiit.bmxback.persistence.locationimage;
 
+import ee.valiit.bmxback.persistence.location.Location;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -8,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_location", schema = "bmx")
-public class UserLocation {
+@Table(name = "location_image", schema = "bmx")
+public class LocationImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -17,12 +18,11 @@ public class UserLocation {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
+
+    @NotNull
+    @Column(name = "image_data", nullable = false)
+    private byte[] imageData;
 
 }
