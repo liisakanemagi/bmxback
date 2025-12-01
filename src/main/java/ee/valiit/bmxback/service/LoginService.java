@@ -1,6 +1,6 @@
 package ee.valiit.bmxback.service;
 
-import ee.valiit.bmxback.controller.LoginResponse;
+import ee.valiit.bmxback.controller.dto.LoginResponse;
 import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
 import ee.valiit.bmxback.persistence.user.User;
 import ee.valiit.bmxback.persistence.user.UserMapper;

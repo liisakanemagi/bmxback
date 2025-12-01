@@ -1,6 +1,6 @@
 package ee.valiit.bmxback.persistence.user;
 
-import ee.valiit.bmxback.controller.LoginResponse;
+import ee.valiit.bmxback.controller.dto.LoginResponse;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
