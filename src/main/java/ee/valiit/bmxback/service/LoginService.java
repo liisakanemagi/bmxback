@@ -18,7 +18,7 @@ public class LoginService {
     private final UserMapper userMapper;
 
     public LoginResponse login(String username, String password) {
-        User user = userRepository.findActiveUsersBy(username, password)
+        User user = userRepository.findActiveUserBy(username, password)
                 .orElseThrow(() -> new ForbiddenException(Error.INCORRECT_CREDENTIALS.getMessage(), Error.INCORRECT_CREDENTIALS.getErrorCode()));
 
         LoginResponse loginResponse = userMapper.toLoginResponse(user);

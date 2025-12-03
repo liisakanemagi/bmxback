@@ -25,6 +25,6 @@ public class UserInfo implements Serializable {
     private String password;
 
     @NotNull
-    @Size(max = 30)
+    @Size(max = 255)
     private String email;
 }
