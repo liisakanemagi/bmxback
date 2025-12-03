@@ -1,5 +1,6 @@
 package ee.valiit.bmxback.service.register;
 
+import ee.valiit.bmxback.controller.register.dto.UserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 
 public class RegisterService {
-    public void register() {
+    public void register(UserInfo userInfo) {
 
     }
 

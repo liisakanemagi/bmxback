@@ -1,6 +1,8 @@
 package ee.valiit.bmxback.controller.register;
 
+import ee.valiit.bmxback.controller.register.dto.UserInfo;
 import ee.valiit.bmxback.service.register.RegisterService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +18,8 @@ public class RegisterController {
 
     @PostMapping("/register")
 
-    public void register() {
-        registerService.register();
+    public void register(@RequestBody @Valid UserInfo userInfo) {
+        registerService.register(userInfo);
     }
 
 

@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 
 import java.io.Serializable;
 
@@ -16,13 +15,16 @@ import java.io.Serializable;
 
 
 public class UserInfo implements Serializable {
+
     @NotNull
     @Size(max = 255)
-    String username;
+    private String username;
+
     @NotNull
     @Size(max = 255)
-    String password;
+    private String password;
+
     @NotNull
     @Size(max = 30)
-    String email;
+    private String email;
 }

@@ -111,8 +111,9 @@ CREATE TABLE "user"
 (
     id       serial       NOT NULL,
     role_id  int          NOT NULL,
-    name     varchar(255) NOT NULL,
+    username     varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
+    email    varchar(255) NOT NULL,
     status   varchar(3)   NOT NULL,
     CONSTRAINT user_account_pk PRIMARY KEY (id)
 );
