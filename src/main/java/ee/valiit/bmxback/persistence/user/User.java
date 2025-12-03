@@ -37,4 +37,9 @@ public class User {
     @Column(name = "status", nullable = false, length = 3)
     private String status;
 
+    @Size(max = 30)
+    @NotNull
+    @Column(name = "email", nullable = false, length = 30)
+    private String email;
+
 }
