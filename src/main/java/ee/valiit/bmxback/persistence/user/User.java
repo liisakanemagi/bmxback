@@ -24,13 +24,18 @@ public class User {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
 
     @Size(max = 3)
     @NotNull

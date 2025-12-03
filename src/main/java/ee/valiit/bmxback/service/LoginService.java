@@ -1,6 +1,6 @@
 package ee.valiit.bmxback.service;
 
-import ee.valiit.bmxback.controller.dto.LoginResponse;
+import ee.valiit.bmxback.controller.login.dto.LoginResponse;
 import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
 import ee.valiit.bmxback.persistence.user.User;
 import ee.valiit.bmxback.persistence.user.UserMapper;
@@ -23,7 +23,7 @@ public class LoginService {
     }
 
     private User getValidActiveUser(String username, String password) {
-        return userRepository.findActiveUsersBy(username, password)
+        return userRepository.findActiveUserBy(username, password)
                 .orElseThrow(() -> new ForbiddenException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getErrorCode()));
     }
 }

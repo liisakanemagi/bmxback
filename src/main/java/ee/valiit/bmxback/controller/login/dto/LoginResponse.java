@@ -1,4 +1,4 @@
-package ee.valiit.bmxback.controller.dto;
+package ee.valiit.bmxback.controller.login.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

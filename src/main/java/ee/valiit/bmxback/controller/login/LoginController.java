@@ -1,6 +1,6 @@
 package ee.valiit.bmxback.controller.login;
 
-import ee.valiit.bmxback.controller.dto.LoginResponse;
+import ee.valiit.bmxback.controller.login.dto.LoginResponse;
 import ee.valiit.bmxback.infrastructure.error.ApiError;
 import ee.valiit.bmxback.service.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
