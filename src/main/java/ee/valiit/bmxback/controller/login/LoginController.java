@@ -1,4 +1,4 @@
-package ee.valiit.bmxback.controller;
+package ee.valiit.bmxback.controller.login;
 
 import ee.valiit.bmxback.controller.login.dto.LoginResponse;
 import ee.valiit.bmxback.infrastructure.error.ApiError;
