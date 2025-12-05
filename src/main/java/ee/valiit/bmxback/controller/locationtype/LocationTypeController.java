@@ -16,7 +16,7 @@ public class LocationTypeController {
 
     private final LocationTypeService locationTypeService;
 
-    @GetMapping("/new-location")
+    @GetMapping("/new-location-type")
 
     public List<LocationTypeInfo> findLocationTypes() {
         List<LocationTypeInfo> locationTypes = locationTypeService.findLocationTypes();
