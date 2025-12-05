@@ -10,14 +10,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-
 public class LocationTypeController {
-
-
     private final LocationTypeService locationTypeService;
 
     @GetMapping("/location-types")
-
     public List<LocationTypeInfo> findLocationTypes() {
         List<LocationTypeInfo> locationTypes = locationTypeService.findLocationTypes();
         return locationTypes;
