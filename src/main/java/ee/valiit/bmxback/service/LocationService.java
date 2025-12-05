@@ -9,7 +9,6 @@ import ee.valiit.bmxback.persistence.location.LocationMapper;
 import ee.valiit.bmxback.persistence.location.LocationRepository;
 import ee.valiit.bmxback.persistence.locationtype.LocationType;
 import ee.valiit.bmxback.persistence.user.User;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +30,8 @@ public class LocationService {
         County county = countyService.getValidCounty(locationDto.getCountyId());
 
         Location location = locationMapper.toLocation(locationDto);
-        location.setLocationType(locationType);
         location.setUser(user);
+        location.setLocationType(locationType);
         location.setCounty(county);
         locationRepository.save(location);
     }
@@ -40,7 +39,7 @@ public class LocationService {
     private void validateLocationNameIsAvailable(LocationDto locationDto) {
         boolean locationExists = locationRepository.locationExistsBy(locationDto.getLocationName());
         if (locationExists) {
-            throw new ForbiddenException(Error.LOCATIONNAME_UNAVAILABLE.getMessage(), Error.LOCATIONNAME_UNAVAILABLE.getErrorCode());
+            throw new ForbiddenException(Error.LOCATION_NAME_UNAVAILABLE.getMessage(), Error.LOCATION_NAME_UNAVAILABLE.getErrorCode());
         }
     }
 
