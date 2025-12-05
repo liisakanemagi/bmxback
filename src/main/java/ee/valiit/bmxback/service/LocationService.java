@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LocationService {
 
-    public void addLocation(@Valid LocationDto locationDto) {
+
+
+    public void addLocation(LocationDto locationDto, Integer userId) {
+
     }
 }
