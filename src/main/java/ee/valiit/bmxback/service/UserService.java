@@ -15,9 +15,10 @@ class UserService {
         this.userRepository = userRepository;
     }
 
-    public void getValidUser(Integer userId) {
-        User user = userRepository.findById(userId)
+    public User getValidUser(Integer userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new PrimaryKeyNotFoundException("useId", userId));
+
     }
 
 }
