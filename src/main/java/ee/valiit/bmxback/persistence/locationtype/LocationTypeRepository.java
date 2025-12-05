@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface LocationTypeRepository extends JpaRepository<LocationType, Integer> {
-    @Query("select l from LocationType l where l.id = :locationTypeId and l.name = :locationTypeName and l.colorCode = :colorCode")
-    List<LocationType> findLocationTypeInfosBy(Integer locationTypeId, String locationTypeName, String colorCode);
+
 
 }
