@@ -1,6 +1,8 @@
 package ee.valiit.bmxback.service;
 
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
+import ee.valiit.bmxback.infrastructure.error.Error;
+import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
 import ee.valiit.bmxback.persistence.county.County;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.persistence.location.LocationMapper;
@@ -22,18 +24,24 @@ public class LocationService {
     private final LocationMapper locationMapper;
 
     public void addLocation(LocationDto locationDto, Integer userId) {
+        validateLocationNameIsAvailable(locationDto);
+
         User user = userService.getValidUser(userId);
         LocationType locationType = locationTypeService.getValidLocationType(locationDto.getLocationTypeId());
         County county = countyService.getValidCounty(locationDto.getCountyId());
-
-        boolean locationExists = locationRepository.locationExistsBy(locationDto.getLocationName());
-
 
         Location location = locationMapper.toLocation(locationDto);
         location.setLocationType(locationType);
         location.setUser(user);
         location.setCounty(county);
         locationRepository.save(location);
+    }
+
+    private void validateLocationNameIsAvailable(LocationDto locationDto) {
+        boolean locationExists = locationRepository.locationExistsBy(locationDto.getLocationName());
+        if (locationExists) {
+            throw new ForbiddenException(Error.LOCATIONNAME_UNAVAILABLE.getMessage(), Error.LOCATIONNAME_UNAVAILABLE.getErrorCode());
+        }
     }
 
 }
