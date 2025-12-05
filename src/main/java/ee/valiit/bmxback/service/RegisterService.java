@@ -1,7 +1,6 @@
-package ee.valiit.bmxback.service.register;
+package ee.valiit.bmxback.service;
 
 import ee.valiit.bmxback.controller.register.dto.UserInfo;
-import ee.valiit.bmxback.infrastructure.error.Error;
 import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
 import ee.valiit.bmxback.persistence.role.Role;
 import ee.valiit.bmxback.persistence.role.RoleRepository;

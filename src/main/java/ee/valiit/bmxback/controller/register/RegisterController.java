@@ -2,7 +2,7 @@ package ee.valiit.bmxback.controller.register;
 
 import ee.valiit.bmxback.controller.register.dto.UserInfo;
 import ee.valiit.bmxback.infrastructure.error.ApiError;
-import ee.valiit.bmxback.service.register.RegisterService;
+import ee.valiit.bmxback.service.RegisterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,7 +1,7 @@
 package ee.valiit.bmxback.controller.county;
 
 import ee.valiit.bmxback.controller.county.dto.CountyInfo;
-import ee.valiit.bmxback.service.county.CountyService;
+import ee.valiit.bmxback.service.CountyService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

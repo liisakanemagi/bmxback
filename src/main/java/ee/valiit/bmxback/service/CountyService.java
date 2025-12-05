@@ -1,4 +1,4 @@
-package ee.valiit.bmxback.service.county;
+package ee.valiit.bmxback.service;
 
 import ee.valiit.bmxback.controller.county.dto.CountyInfo;
 import ee.valiit.bmxback.persistence.county.County;
