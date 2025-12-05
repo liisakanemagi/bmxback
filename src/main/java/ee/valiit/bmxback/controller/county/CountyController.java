@@ -4,7 +4,9 @@ import ee.valiit.bmxback.controller.county.dto.CountyInfo;
 import ee.valiit.bmxback.service.CountyService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class CountyController {
 
     private final CountyService countyService;
 
-    @GetMapping("/new-location/county")
+    @GetMapping("/counties")
     @Operation(
             summary = "Leiab süsteemist kõik maakonnad.",
             description = "Tagastab kogu county tabeli info")

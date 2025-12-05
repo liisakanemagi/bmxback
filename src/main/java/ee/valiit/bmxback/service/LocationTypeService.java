@@ -1,6 +1,7 @@
 package ee.valiit.bmxback.service;
 
 import ee.valiit.bmxback.controller.locationtype.dto.LocationTypeInfo;
+import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
 import ee.valiit.bmxback.persistence.locationtype.LocationType;
 import ee.valiit.bmxback.persistence.locationtype.LocationTypeMapper;
 import ee.valiit.bmxback.persistence.locationtype.LocationTypeRepository;
@@ -23,4 +24,11 @@ public class LocationTypeService {
         List<LocationTypeInfo> locationTypeInfos = locationTypeMapper.toLocationTypeInfos(locationTypes);
         return locationTypeInfos;
     }
+
+    public LocationType getValidLocationType(Integer locationTypeId) {
+        LocationType locationType = locationTypeRepository.findById(locationTypeId)
+                .orElseThrow(() -> new PrimaryKeyNotFoundException("locationTypeId", locationTypeId));
+        return locationType;
+    }
+
 }
