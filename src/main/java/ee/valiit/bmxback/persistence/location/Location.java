@@ -1,8 +1,8 @@
 package ee.valiit.bmxback.persistence.location;
 
+import ee.valiit.bmxback.persistence.county.County;
 import ee.valiit.bmxback.persistence.locationtype.LocationType;
 import ee.valiit.bmxback.persistence.user.User;
-import ee.valiit.bmxback.persistence.county.County;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
