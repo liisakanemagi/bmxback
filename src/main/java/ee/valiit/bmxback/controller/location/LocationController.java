@@ -23,16 +23,12 @@ public class LocationController {
     @PostMapping("/new-location")
 
     public void addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new PrimaryKeyNotFoundException("userId", userId));
 
 
-        Location location = new Location();
-        location.setName(location.getName());
+    };
 
 
-        locationService.addLocation(locationDto, userId);
 
-    }
 
 }
 

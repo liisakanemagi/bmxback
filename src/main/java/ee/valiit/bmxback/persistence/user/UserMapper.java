@@ -18,8 +18,6 @@ public interface UserMapper {
     @Mapping(source = "password", target = "password")
     @Mapping(source = "email", target = "email")
     @Mapping(expression = "java(Status.ACTIVE.getCode())", target = "status")
-
-
     User toUser(UserInfo userInfo);
 
 }

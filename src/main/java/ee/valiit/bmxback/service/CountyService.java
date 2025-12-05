@@ -1,6 +1,7 @@
 package ee.valiit.bmxback.service;
 
 import ee.valiit.bmxback.controller.county.dto.CountyInfo;
+import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
 import ee.valiit.bmxback.persistence.county.County;
 import ee.valiit.bmxback.persistence.county.CountyMapper;
 import ee.valiit.bmxback.persistence.county.CountyRepository;
@@ -21,6 +22,9 @@ public class CountyService {
         Sort sort = Sort.by(Sort.DEFAULT_DIRECTION, "name");
         List<County> counties = countyRepository.findAll(sort);
         return countyMapper.toCountyInfos(counties);
+    };
+    public County getValidCounty(Integer countyId) {
+        return countyRepository.findById(countyId).orElseThrow(() -> new PrimaryKeyNotFoundException("countyId", countyId));
     }
 
 
