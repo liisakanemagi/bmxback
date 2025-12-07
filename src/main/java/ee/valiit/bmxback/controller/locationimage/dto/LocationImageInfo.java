@@ -18,5 +18,7 @@ public class LocationImageInfo implements Serializable {
     private Integer locationId;
 
     @NotNull
-    private byte[] imageData;
+    private String locationImageData;
+
+
 }

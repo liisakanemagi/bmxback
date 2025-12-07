@@ -1,6 +1,8 @@
 package ee.valiit.bmxback.infrastructure.exception;
 
 import lombok.Getter;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 
 @Getter
 public class PrimaryKeyNotFoundException extends RuntimeException {
