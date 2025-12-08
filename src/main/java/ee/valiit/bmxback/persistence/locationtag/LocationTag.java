@@ -1,7 +1,7 @@
 package ee.valiit.bmxback.persistence.locationtag;
 
-import ee.valiit.bmxback.persistence.tag.Tag;
 import ee.valiit.bmxback.persistence.location.Location;
+import ee.valiit.bmxback.persistence.tag.Tag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
