@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CountyInfo implements Serializable {
-    private Integer locationId;
+    private Integer countyId;
     @NotNull
     @Size(max = 255)
     private String countyName;
