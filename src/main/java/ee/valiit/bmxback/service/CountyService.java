@@ -23,11 +23,8 @@ public class CountyService {
         List<County> counties = countyRepository.findAll(sort);
         return countyMapper.toCountyInfos(counties);
     };
-    public County getValidCounty(Integer countyId) {
-        return countyRepository.findById(countyId).orElseThrow(() -> new PrimaryKeyNotFoundException("countyId", countyId));
-    }
 
-public County getValidCounty(Integer countyId){
+        public County getValidCounty(Integer countyId){
         return countyRepository.findById(countyId)
             .orElseThrow(() -> new PrimaryKeyNotFoundException("countyId", countyId));
 }

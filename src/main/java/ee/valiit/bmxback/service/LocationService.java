@@ -3,16 +3,13 @@ package ee.valiit.bmxback.service;
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
 import ee.valiit.bmxback.infrastructure.error.Error;
 import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
+import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
 import ee.valiit.bmxback.persistence.county.County;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.persistence.location.LocationMapper;
 import ee.valiit.bmxback.persistence.location.LocationRepository;
 import ee.valiit.bmxback.persistence.locationtype.LocationType;
 import ee.valiit.bmxback.persistence.user.User;
-import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
-import ee.valiit.bmxback.persistence.location.Location;
-import ee.valiit.bmxback.persistence.location.LocationRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +48,3 @@ public class LocationService {
         return locationRepository.findById(locationId).orElseThrow(() -> new PrimaryKeyNotFoundException("locationId", locationId));
     }
 }
-
-}
-
