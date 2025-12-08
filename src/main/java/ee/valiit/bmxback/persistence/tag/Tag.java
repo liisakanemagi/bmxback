@@ -21,4 +21,7 @@ public class Tag {
     @Column(name = "name", nullable = false, length = 20)
     private String name;
 
+    @Column(name = "tag_id")
+    private Integer tagId;
+
 }

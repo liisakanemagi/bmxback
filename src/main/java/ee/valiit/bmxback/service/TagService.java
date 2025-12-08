@@ -19,5 +19,9 @@ public class TagService {
         List<Tag> tags = tagMapper.toTags(tagDtos);
         tagRepository.saveAll(tags);
     }
+    public List<TagDto> findTags(Integer tagId) {
+        List<Tag> tags = tagRepository.findByTagId(tagId);
+        return tagMapper.toTagDtos(tags);
+    }
 
 }
