@@ -1,9 +1,6 @@
 package ee.valiit.bmxback.controller.location;
 
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
-import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
-import ee.valiit.bmxback.persistence.location.Location;
-import ee.valiit.bmxback.persistence.user.User;
 import ee.valiit.bmxback.persistence.user.UserRepository;
 import ee.valiit.bmxback.service.LocationService;
 import jakarta.validation.Valid;
@@ -18,17 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocationController {
 
     private final LocationService locationService;
-    private final UserRepository userRepository;
 
-    @PostMapping("/new-location")
-
+    @PostMapping("/location")
     public void addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
-
-
-    };
-
-
-
+        locationService.addLocation(locationDto, userId);
+    }
 
 }
 

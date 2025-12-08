@@ -27,7 +27,10 @@ public class CountyService {
         return countyRepository.findById(countyId).orElseThrow(() -> new PrimaryKeyNotFoundException("countyId", countyId));
     }
 
-
+public County getValidCounty(Integer countyId){
+        return countyRepository.findById(countyId)
+            .orElseThrow(() -> new PrimaryKeyNotFoundException("countyId", countyId));
+}
 
 
 }

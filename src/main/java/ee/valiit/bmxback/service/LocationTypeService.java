@@ -26,9 +26,8 @@ public class LocationTypeService {
     }
 
     public LocationType getValidLocationType(Integer locationTypeId) {
-        LocationType locationType = locationTypeRepository.findById(locationTypeId)
+        return locationTypeRepository.findById(locationTypeId)
                 .orElseThrow(() -> new PrimaryKeyNotFoundException("locationTypeId", locationTypeId));
-        return locationType;
     }
 
 }
