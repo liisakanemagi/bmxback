@@ -1,13 +1,14 @@
 package ee.valiit.bmxback.service;
 
 import ee.valiit.bmxback.controller.locationimage.dto.LocationImageDto;
-import ee.valiit.bmxback.infrastructure.util.BytesConverter;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.persistence.locationimage.LocationImage;
 import ee.valiit.bmxback.persistence.locationimage.LocationImageMapper;
 import ee.valiit.bmxback.persistence.locationimage.LocationImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,12 +33,8 @@ public class LocationImageService {
         return locationImage;
     }
 
-//    public List<LocationImageInfo> getLocationImages(Integer locationId){
-//        List<LocationImage> locationImages = locationImageRepository.findByLocationId(locationId);
-//        return locationImageMapper.toLocationImageInfos(locationImages);
-//
-//    }
-
-
-
+    public List<LocationImageDto> findLocationImages(Integer locationId) {
+        List<LocationImage> locationImages = locationImageRepository.findByLocationId(locationId);
+        return locationImageMapper.toLocationImageDtos(locationImages);
+    }
 }

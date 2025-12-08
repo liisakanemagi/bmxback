@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class LocationImageController {
@@ -18,7 +20,8 @@ public class LocationImageController {
         locationImageService.addLocationImage(locationImageDto);
     }
     @GetMapping("/location/image")
-    public void findLocationImage(@RequestParam @Valid Integer locationId){
+    public List<LocationImageDto> findLocationImage(@RequestParam @Valid Integer locationId){
+         return locationImageService.findLocationImages(locationId);
 
     }
 }
