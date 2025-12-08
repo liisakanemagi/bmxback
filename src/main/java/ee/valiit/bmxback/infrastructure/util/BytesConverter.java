@@ -5,6 +5,9 @@ import java.nio.charset.StandardCharsets;
 public class BytesConverter {
 
     public static byte[] stringToBytes(String value) {
+        if (value == null) {
+            return null;
+        }
         return value.getBytes(StandardCharsets.UTF_8);
     }
 

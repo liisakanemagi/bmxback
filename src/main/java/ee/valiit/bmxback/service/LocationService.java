@@ -18,7 +18,6 @@ public class LocationService {
     }
 
     public Location getValidLocation(Integer locationId) {
-        Location location = locationRepository.findById(locationId).orElseThrow(() -> new PrimaryKeyNotFoundException("locationId", locationId));
-        return location;
+        return locationRepository.findById(locationId).orElseThrow(() -> new PrimaryKeyNotFoundException("locationId", locationId));
     }
 }

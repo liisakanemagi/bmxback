@@ -1,16 +1,13 @@
 package ee.valiit.bmxback.service;
 
-import ee.valiit.bmxback.controller.locationimage.dto.LocationImageInfo;
+import ee.valiit.bmxback.controller.locationimage.dto.LocationImageDto;
 import ee.valiit.bmxback.infrastructure.util.BytesConverter;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.persistence.locationimage.LocationImage;
 import ee.valiit.bmxback.persistence.locationimage.LocationImageMapper;
 import ee.valiit.bmxback.persistence.locationimage.LocationImageRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,20 +16,27 @@ public class LocationImageService {
     private final LocationImageMapper locationImageMapper;
     private final LocationService locationService;
 
-    public void addLocationImage(LocationImageInfo locationImageInfo) {
+    public void addLocationImage(LocationImageDto locationImageDto) {
+        createAnsSaveLocationImage(locationImageDto);
+    }
 
-        Location location = locationService.getValidLocation(locationImageInfo.getLocationId());
-        LocationImage locationImage = new LocationImage();
-        locationImage.setImageData(BytesConverter.stringToBytes(locationImageInfo.getLocationImageData()));
-        locationImage.setLocation(location);
+    private void createAnsSaveLocationImage(LocationImageDto locationImageDto) {
+        LocationImage locationImage = createLocationImage(locationImageDto);
         locationImageRepository.save(locationImage);
     }
 
-    public List<LocationImageInfo> getLocationImages(Integer locationId){
-        List<LocationImage> locationImages = locationImageRepository.findByLocationId(locationId);
-        return locationImageMapper.toLocationImageInfos(locationImages);
-
+    private LocationImage createLocationImage(LocationImageDto locationImageDto) {
+        Location location = locationService.getValidLocation(locationImageDto.getLocationId());
+        LocationImage locationImage = locationImageMapper.toLocationImage(locationImageDto);
+        locationImage.setLocation(location);
+        return locationImage;
     }
+
+//    public List<LocationImageInfo> getLocationImages(Integer locationId){
+//        List<LocationImage> locationImages = locationImageRepository.findByLocationId(locationId);
+//        return locationImageMapper.toLocationImageInfos(locationImages);
+//
+//    }
 
 
 

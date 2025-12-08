@@ -1,5 +1,6 @@
 package ee.valiit.bmxback.controller.locationimage.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,12 +14,13 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocationImageInfo implements Serializable {
-    private Integer id;
+public class LocationImageDto implements Serializable {
+
+    @NotNull
     private Integer locationId;
 
     @NotNull
+    @NotEmpty
     private String locationImageData;
-
 
 }
