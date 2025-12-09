@@ -7,10 +7,10 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
 import java.time.Instant;
+import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, imports = {Instant.class})
 public interface LocationMapper {
-
 
     @Mapping(source = "locationName", target = "name")
     @Mapping(source = "locationAddress", target = "address")
@@ -21,5 +21,7 @@ public interface LocationMapper {
     @Mapping(expression = "java(Instant.now())", target = "createdAt")
     @Mapping(constant = "0", target = "averageRating")
     Location toLocation(LocationDto locationDto);
+
+    List<LocationDto> toLocationDTOs(List<Location> locations);
 
 }

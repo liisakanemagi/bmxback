@@ -22,7 +22,7 @@ public class CountyService {
         Sort sort = Sort.by(Sort.DEFAULT_DIRECTION, "name");
         List<County> counties = countyRepository.findAll(sort);
         return countyMapper.toCountyInfos(counties);
-    };
+    }
 
         public County getValidCounty(Integer countyId){
         return countyRepository.findById(countyId)

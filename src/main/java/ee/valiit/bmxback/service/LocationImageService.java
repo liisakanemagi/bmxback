@@ -37,4 +37,5 @@ public class LocationImageService {
         List<LocationImage> locationImages = locationImageRepository.findByLocationId(locationId);
         return locationImageMapper.toLocationImageDtos(locationImages);
     }
+
 }

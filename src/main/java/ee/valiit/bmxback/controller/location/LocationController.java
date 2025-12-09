@@ -11,10 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,11 +26,15 @@ public class LocationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "403", description ="Sõidukoht on juba olemas (errorCode 113)", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public Integer addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
+        public Integer addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
         Location location = locationService.addLocation(locationDto, userId);
         return location.getId();
     }
 
+    @GetMapping("/locations/filtered")
+    public void findFilteredLocations(@RequestParam Integer countyId, String tagName, List<Integer> typeIds) {
+        locationService.findFilteredLocations(countyId, tagName, typeIds);
+
+    }
+
 }
-
-

@@ -11,7 +11,10 @@ import ee.valiit.bmxback.persistence.location.LocationRepository;
 import ee.valiit.bmxback.persistence.locationtype.LocationType;
 import ee.valiit.bmxback.persistence.user.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +25,7 @@ public class LocationService {
     private final CountyService countyService;
     private final LocationRepository locationRepository;
     private final LocationMapper locationMapper;
+    private final LocationImageService locationImageService;
 
     public Location addLocation(LocationDto locationDto, Integer userId) {
         validateLocationNameIsAvailable(locationDto);
@@ -47,4 +51,14 @@ public class LocationService {
     public Location getValidLocation(Integer locationId) {
         return locationRepository.findById(locationId).orElseThrow(() -> new PrimaryKeyNotFoundException("locationId", locationId));
     }
+
+    public void findFilteredLocations(Integer countyId, String tagName, List<Integer> typeIds) {
+
+
+
+        List<LocationDto> locationDTOs = locationMapper.toLocationDTOs(locations);
+
+        locationImageService.findLocationImages()
+    }
 }
+
