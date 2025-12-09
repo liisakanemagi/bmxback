@@ -23,7 +23,7 @@ public class LocationService {
     private final LocationRepository locationRepository;
     private final LocationMapper locationMapper;
 
-    public void addLocation(LocationDto locationDto, Integer userId) {
+    public Location addLocation(LocationDto locationDto, Integer userId) {
         validateLocationNameIsAvailable(locationDto);
 
         User user = userService.getValidUser(userId);
@@ -34,7 +34,7 @@ public class LocationService {
         location.setUser(user);
         location.setLocationType(locationType);
         location.setCounty(county);
-        locationRepository.save(location);
+        return locationRepository.save(location);
     }
 
     private void validateLocationNameIsAvailable(LocationDto locationDto) {

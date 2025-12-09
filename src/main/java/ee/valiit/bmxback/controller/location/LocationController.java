@@ -2,6 +2,7 @@ package ee.valiit.bmxback.controller.location;
 
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
 import ee.valiit.bmxback.infrastructure.error.ApiError;
+import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.service.LocationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,8 +27,9 @@ public class LocationController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "403", description ="Sõidukoht on juba olemas (errorCode 113)", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-    public void addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
-        locationService.addLocation(locationDto, userId);
+    public Integer addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
+        Location location = locationService.addLocation(locationDto, userId);
+        return location.getId();
     }
 
 }
