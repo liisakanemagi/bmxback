@@ -49,6 +49,12 @@ public class LocationService {
         return createAndSaveLocation(locationDto, userId);
     }
 
+    public void getLocationById(Integer locationId) {
+        Location location = getValidLocation(locationId);
+
+
+    }
+
     public List<LocationInfo> findFilteredLocations(Integer userId, Integer countyId, List<Integer> typeIds, Integer tagId) {
         List<Location> locations = getLocations(countyId, typeIds, tagId);
         List<LocationInfo> locationInfos = locationMapper.toLocationInfos(locations);

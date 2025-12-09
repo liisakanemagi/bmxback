@@ -25,10 +25,6 @@ public interface LocationMapper {
 
     List<LocationDto> toLocationDTOs(List<Location> locations);
 
-
-
-
-
     @Mapping(source = "id", target = "locationId")
     @Mapping(source = "name", target = "locationName")
     @Mapping(constant = "0", target = "locationAverageRating")

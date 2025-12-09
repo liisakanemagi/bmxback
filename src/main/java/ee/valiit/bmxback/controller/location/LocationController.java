@@ -37,4 +37,8 @@ public class LocationController {
         return locationService.findFilteredLocations(userId, countyId, locationTypeIds, tagId);
     }
 
+    @GetMapping("/locations/{locationId}")
+    public void getLocationById(@PathVariable Integer locationId){
+        locationService.getLocationById(locationId);
+    }
 }
