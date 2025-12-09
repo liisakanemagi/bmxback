@@ -21,7 +21,9 @@ public class Tag {
     @Column(name = "name", nullable = false, length = 20)
     private String name;
 
-    @Column(name = "tag_id")
-    private Integer tagId;
+    @Size(max = 3)
+    @NotNull
+    @Column(name = "status", nullable = false, length = 3)
+    private String status;
 
 }

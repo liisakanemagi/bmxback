@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Status {
     ACTIVE("A"),
+    PENDING("P"),
     SOFT_DELETED("D");
 
     private final String code;

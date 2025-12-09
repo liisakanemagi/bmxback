@@ -3,7 +3,6 @@ package ee.valiit.bmxback.controller.tag.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.Value;
 
 import java.io.Serializable;
 
@@ -11,7 +10,7 @@ import java.io.Serializable;
  * DTO for {@link ee.valiit.bmxback.persistence.tag.Tag}
  */
 @Data
-public class TagDto implements Serializable {
+public class TagInfo implements Serializable {
 
     @NotNull
     private Integer tagId;
@@ -19,4 +18,5 @@ public class TagDto implements Serializable {
     @NotNull
     @Size(max = 20)
     private String tagName;
+
 }

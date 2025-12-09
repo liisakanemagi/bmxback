@@ -102,8 +102,9 @@ CREATE TABLE role
 -- Table: tag
 CREATE TABLE tag
 (
-    id   serial      NOT NULL,
-    name varchar(20) NOT NULL,
+    id     serial      NOT NULL,
+    name   varchar(20) NOT NULL,
+    status varchar(3)  NOT NULL,
     CONSTRAINT tag_pk PRIMARY KEY (id)
 );
 -- Table: user
@@ -111,7 +112,7 @@ CREATE TABLE "user"
 (
     id       serial       NOT NULL,
     role_id  int          NOT NULL,
-    username     varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     email    varchar(255) NOT NULL,
     status   varchar(3)   NOT NULL,
