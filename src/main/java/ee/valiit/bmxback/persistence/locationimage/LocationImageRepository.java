@@ -4,9 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LocationImageRepository extends JpaRepository<LocationImage, Integer> {
 
     @Query("select l from LocationImage l where l.location.id = :locationId")
     List<LocationImage> findLocationImagesBy(Integer locationId);
+
+    Optional<LocationImage> findFirstByLocationId(Integer locationId);
+
 }

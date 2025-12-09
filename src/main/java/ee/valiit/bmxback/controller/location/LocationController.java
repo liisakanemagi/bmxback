@@ -1,6 +1,7 @@
 package ee.valiit.bmxback.controller.location;
 
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
+import ee.valiit.bmxback.controller.location.dto.LocationInfo;
 import ee.valiit.bmxback.infrastructure.error.ApiError;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.service.LocationService;
@@ -25,16 +26,15 @@ public class LocationController {
     @Operation(summary = "Uue asukoha lisamine")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "403", description ="Sõidukoht on juba olemas (errorCode 113)", content = @Content(schema = @Schema(implementation = ApiError.class)))})
-        public Integer addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
+            @ApiResponse(responseCode = "403", description = "Sõidukoht on juba olemas (errorCode 113)", content = @Content(schema = @Schema(implementation = ApiError.class)))})
+    public Integer addLocation(@RequestBody @Valid LocationDto locationDto, @RequestParam Integer userId) {
         Location location = locationService.addLocation(locationDto, userId);
         return location.getId();
     }
 
     @GetMapping("/locations/filtered")
-    public void findFilteredLocations(@RequestParam Integer countyId, String tagName, List<Integer> typeIds) {
-        locationService.findFilteredLocations(countyId, tagName, typeIds);
-
+    public List<LocationInfo> findFilteredLocations(@RequestParam Integer userId, @RequestParam Integer countyId, @RequestParam List<Integer> locationTypeIds, @RequestParam Integer tagId) {
+        return locationService.findFilteredLocations(userId, countyId, locationTypeIds, tagId);
     }
 
 }

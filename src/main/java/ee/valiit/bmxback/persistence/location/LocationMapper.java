@@ -1,6 +1,7 @@
 package ee.valiit.bmxback.persistence.location;
 
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
+import ee.valiit.bmxback.controller.location.dto.LocationInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -23,5 +24,22 @@ public interface LocationMapper {
     Location toLocation(LocationDto locationDto);
 
     List<LocationDto> toLocationDTOs(List<Location> locations);
+
+
+
+
+
+    @Mapping(source = "id", target = "locationId")
+    @Mapping(source = "name", target = "locationName")
+    @Mapping(constant = "0", target = "locationAverageRating")
+    @Mapping(source = "address", target = "locationAddress")
+    @Mapping(source = "locationType.colorCode", target = "typeColorCode")
+    @Mapping(source = "county.name", target = "countyName")
+    @Mapping(constant = "", target = "locationImageData")
+    @Mapping(constant = "false", target = "isInFavourites")
+    LocationInfo toLocationInfo(Location location);
+
+
+    List<LocationInfo> toLocationInfos(List<Location> locations);
 
 }
