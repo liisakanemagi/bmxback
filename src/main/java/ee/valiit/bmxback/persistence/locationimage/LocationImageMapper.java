@@ -10,11 +10,18 @@ import java.util.List;
 public interface LocationImageMapper {
 
 
-    @Mapping(source = "locationImageData", target = "imageData", qualifiedByName = "toBytes")
+    @Mapping(source = "locationImageData", target = "imageData", qualifiedByName = "stringToBytes")
     LocationImage toLocationImage(LocationImageDto locationImageDto);
 
-    @Named("toBytes")
-    static byte[] toBytes(String value) {
+    @Mapping(source = "location.id", target = "locationId")
+    @Mapping(source = "imageData", target = "locationImageData", qualifiedByName = "bytesToString")
+    LocationImageDto toLocationImageDto(LocationImage locationImage);
+
+    List<LocationImageDto> toLocationImageDtos(List<LocationImage> locationImages);
+
+
+    @Named("stringToBytes")
+    static byte[] stringToBytes(String value) {
         return BytesConverter.stringToBytes(value);
     }
 
@@ -23,10 +30,4 @@ public interface LocationImageMapper {
         return BytesConverter.bytesToString(bytes);
     }
 
-
-    @Mapping(source = "location.id", target = "locationId")
-    @Mapping(source = "imageData", target = "locationImageData", qualifiedByName = "bytesToString")
-    LocationImageDto toLocationImageDto(LocationImage locationImage);
-
-    List<LocationImageDto> toLocationImageDtos(List<LocationImage> locationImages);
 }
