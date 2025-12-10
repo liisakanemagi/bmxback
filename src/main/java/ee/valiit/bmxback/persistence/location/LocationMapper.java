@@ -2,10 +2,7 @@ package ee.valiit.bmxback.persistence.location;
 
 import ee.valiit.bmxback.controller.location.dto.LocationDto;
 import ee.valiit.bmxback.controller.location.dto.LocationInfo;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.time.Instant;
 import java.util.List;
@@ -23,7 +20,10 @@ public interface LocationMapper {
     @Mapping(constant = "0", target = "averageRating")
     Location toLocation(LocationDto locationDto);
 
-    List<LocationDto> toLocationDTOs(List<Location> locations);
+
+//    @Mapping(source = "id", target = "locationId")
+//    @InheritInverseConfiguration(name = "toLocation")
+//    LocationInfo toLocationInfoId (Location location);
 
     @Mapping(source = "id", target = "locationId")
     @Mapping(source = "name", target = "locationName")
