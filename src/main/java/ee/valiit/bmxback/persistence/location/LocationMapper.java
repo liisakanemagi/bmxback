@@ -20,10 +20,14 @@ public interface LocationMapper {
     @Mapping(constant = "0", target = "averageRating")
     Location toLocation(LocationDto locationDto);
 
-
-//    @Mapping(source = "id", target = "locationId")
-//    @InheritInverseConfiguration(name = "toLocation")
-//    LocationInfo toLocationInfoId (Location location);
+    @Mapping(source = "locationType.id", target = "locationTypeId")
+    @Mapping(source = "county.id", target = "countyId")
+    @Mapping(source = "name", target = "locationName")
+    @Mapping(source = "address", target = "locationAddress")
+    @Mapping(source = "lng", target = "locationLng")
+    @Mapping(source = "lat", target = "locationLat")
+    @Mapping(source = "description", target = "locationDescription")
+    LocationDto toLocationDto(Location location);
 
     @Mapping(source = "id", target = "locationId")
     @Mapping(source = "name", target = "locationName")

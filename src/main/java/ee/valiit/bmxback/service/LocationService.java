@@ -41,7 +41,8 @@ public class LocationService {
 
 
     public Location getValidLocation(Integer locationId) {
-        return locationRepository.findById(locationId).orElseThrow(() -> new PrimaryKeyNotFoundException("locationId", locationId));
+        return locationRepository.findById(locationId)
+                .orElseThrow(() -> new PrimaryKeyNotFoundException("locationId", locationId));
     }
 
     public Location addLocation(LocationDto locationDto, Integer userId) {
@@ -49,10 +50,9 @@ public class LocationService {
         return createAndSaveLocation(locationDto, userId);
     }
 
-    public void getLocationById(Integer locationId) {
+    public LocationDto getLocation(Integer locationId) {
         Location location = getValidLocation(locationId);
-
-
+        return locationMapper.toLocationDto(location);
     }
 
     public List<LocationInfo> findFilteredLocations(Integer userId, Integer countyId, List<Integer> typeIds, Integer tagId) {

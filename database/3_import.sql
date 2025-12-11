@@ -24,3 +24,8 @@ INSERT INTO bmx.county (id, name, zoom_level, lng, lat) VALUES (default, 'Tartu 
 INSERT INTO bmx.county (id, name, zoom_level, lng, lat) VALUES (default, 'Valga maakond', 7, 26.020000, 57.780000);
 INSERT INTO bmx.county (id, name, zoom_level, lng, lat) VALUES (default, 'Viljandi maakond', 7, 25.600000, 58.367000);
 INSERT INTO bmx.county (id, name, zoom_level, lng, lat) VALUES (default, 'Võru maakond', 7, 27.030000, 57.850000);
+
+INSERT INTO bmx.tag (id, name, status) VALUES (default, 'algaja', 'A');
+INSERT INTO bmx.tag (id, name, status) VALUES (default, 'kesktase', 'A');
+INSERT INTO bmx.tag (id, name, status) VALUES (default, 'ekspert', 'A');
+INSERT INTO bmx.tag (id, name, status) VALUES (default, 'pro', 'A');
