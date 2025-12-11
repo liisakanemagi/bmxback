@@ -19,6 +19,8 @@ public class LocationInfo implements Serializable {
     private Integer locationId;
     private String locationName;
     private BigDecimal locationAverageRating;
+    private BigDecimal locationLat;
+    private BigDecimal locationLng;
     private String locationAddress;
     private String typeColorCode;
     private String countyName;

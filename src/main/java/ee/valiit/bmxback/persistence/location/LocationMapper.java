@@ -32,6 +32,8 @@ public interface LocationMapper {
     @Mapping(source = "id", target = "locationId")
     @Mapping(source = "name", target = "locationName")
     @Mapping(constant = "0", target = "locationAverageRating")
+    @Mapping(source = "lat", target = "locationLat")
+    @Mapping(source = "lng", target = "locationLng")
     @Mapping(source = "address", target = "locationAddress")
     @Mapping(source = "locationType.colorCode", target = "typeColorCode")
     @Mapping(source = "county.name", target = "countyName")
