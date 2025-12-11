@@ -12,6 +12,7 @@ public interface LocationTypeMapper {
     @Mapping(source = "id" ,target = "locationTypeId")
     @Mapping(source = "name" ,target = "locationTypeName")
     @Mapping(source = "colorCode" ,target = "locationTypeColorCode")
+    @Mapping(constant = "true",target = "isSelected")
     LocationTypeInfo toLocationTypInfo(LocationType locationType);
 
     List<LocationTypeInfo> toLocationTypeInfos(List<LocationType> locationTypes);

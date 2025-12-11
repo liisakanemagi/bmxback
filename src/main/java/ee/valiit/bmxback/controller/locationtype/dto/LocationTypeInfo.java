@@ -17,10 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class LocationTypeInfo implements Serializable {
     private Integer locationTypeId;
-    @NotNull
-    @Size(max = 255)
     private String locationTypeName;
-    @NotNull
-    @Size(max = 10)
     private String locationTypeColorCode;
+    private Boolean isSelected;
 }
