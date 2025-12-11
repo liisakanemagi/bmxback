@@ -5,10 +5,7 @@ import ee.valiit.bmxback.controller.locationtag.dto.LocationTagDto;
 import ee.valiit.bmxback.service.LocationTagService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +15,7 @@ public class LocationTagController {
     private final LocationTagService locationTagService;
 
     @PostMapping("/location/tag")
-    public void addLocationTag(@RequestBody @Valid LocationTagDto locationTagDto) {
-        locationTagService.addLocationTag(locationTagDto);
+    public void addLocationTag(@RequestParam Integer locationId, @RequestParam Integer tagId) {
+        locationTagService.addLocationTag(locationId, tagId);
     }
 }
