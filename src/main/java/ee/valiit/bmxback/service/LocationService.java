@@ -7,6 +7,7 @@ import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
 import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
 import ee.valiit.bmxback.infrastructure.util.BytesConverter;
 import ee.valiit.bmxback.persistence.county.County;
+import ee.valiit.bmxback.persistence.favoritelocation.FavoriteLocation;
 import ee.valiit.bmxback.persistence.favoritelocation.FavoriteLocationRepository;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.persistence.location.LocationMapper;
@@ -19,6 +20,7 @@ import ee.valiit.bmxback.persistence.locationtype.LocationType;
 import ee.valiit.bmxback.persistence.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.View;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class LocationService {
     private final LocationRatingRepository locationRatingRepository;
     private final LocationImageRepository locationImageRepository;
     private final FavoriteLocationRepository favoriteLocationRepository;
+    private final View error;
 
 
     public Location getValidLocation(Integer locationId) {
@@ -135,9 +138,22 @@ public class LocationService {
 
     private void handleAddIsInFavourites(Integer userId, LocationInfo locationInfo) {
         if (!userId.equals(0)) {
-            boolean locationIsInFavourites = favoriteLocationRepository.locationIsInFavouritesBy(userId, locationInfo.getLocationId());
+            boolean locationIsInFavourites = favoriteLocationRepository.locationIsInFavourites(userId, locationInfo.getLocationId());
             locationInfo.setIsInFavourites(locationIsInFavourites);
         }
+    }
+
+    public Integer addFavoriteLocation(Integer userId, Integer locationId) {
+        User user = userService.getValidUser(userId);
+        Location location  = getValidLocation(locationId);
+        if (favoriteLocationRepository.locationIsInFavourites(userId, locationId)) {
+            throw new ForbiddenException(Error.LOCATION_ALREADY_IN_FAVOURITES.getMessage(), Error.LOCATION_ALREADY_IN_FAVOURITES.getErrorCode());
+        }
+        FavoriteLocation favoriteLocation = new FavoriteLocation();
+        favoriteLocation.setLocation(location);
+        favoriteLocation.setUser(user);
+        favoriteLocationRepository.save(favoriteLocation);
+        return favoriteLocation.getId();
     }
 
 }

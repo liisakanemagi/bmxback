@@ -7,7 +7,8 @@ import lombok.Getter;
 public enum Error {
     INCORRECT_CREDENTIALS("Vale kasutajanimi või parool", 111),
     USERNAME_UNAVAILABLE("Kasutajanimi on juba olemas", 112),
-    LOCATION_NAME_UNAVAILABLE("Sõidukoht on juba olemas", 113);
+    LOCATION_NAME_UNAVAILABLE("Sõidukoht on juba olemas", 113),
+    LOCATION_ALREADY_IN_FAVOURITES("Soidukoht on juba lemmikuks lisatud", 114);
 
 
     private final String message;

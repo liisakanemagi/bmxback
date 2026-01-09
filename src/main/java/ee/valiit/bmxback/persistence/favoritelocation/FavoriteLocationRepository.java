@@ -7,6 +7,6 @@ public interface FavoriteLocationRepository extends JpaRepository<FavoriteLocati
 
 
     @Query("select (count(f) > 0) from FavoriteLocation f where f.user.id = :userId and f.location.id = :locationId")
-    boolean locationIsInFavouritesBy(Integer userId, Integer locationId);
+    boolean locationIsInFavourites(Integer userId, Integer locationId);
 
 }
