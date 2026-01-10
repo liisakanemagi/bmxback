@@ -7,8 +7,6 @@ import ee.valiit.bmxback.infrastructure.exception.ForbiddenException;
 import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
 import ee.valiit.bmxback.infrastructure.util.BytesConverter;
 import ee.valiit.bmxback.persistence.county.County;
-import ee.valiit.bmxback.persistence.favoritelocation.FavoriteLocation;
-import ee.valiit.bmxback.persistence.favoritelocation.FavoriteLocationRepository;
 import ee.valiit.bmxback.persistence.location.Location;
 import ee.valiit.bmxback.persistence.location.LocationMapper;
 import ee.valiit.bmxback.persistence.location.LocationRepository;
@@ -39,8 +37,8 @@ public class LocationService {
     private final LocationTagRepository locationTagRepository;
     private final LocationRatingRepository locationRatingRepository;
     private final LocationImageRepository locationImageRepository;
-    private final FavoriteLocationRepository favoriteLocationRepository;
     private final View error;
+    private final FavoriteLocationService favoriteLocationService;
 
 
     public Location getValidLocation(Integer locationId) {
@@ -115,7 +113,7 @@ public class LocationService {
         for (LocationInfo locationInfo : locationInfos) {
             handleAddLocationAverageRating(locationInfo);
             handleAddLocationImageData(locationInfo);
-            handleAddIsInFavourites(userId, locationInfo);
+            favoriteLocationService.handleLocationsIsInFavourites(userId, locationInfo);
         }
     }
 
@@ -135,26 +133,5 @@ public class LocationService {
             locationInfo.setLocationImageData(BytesConverter.bytesToString(imageDataAsBytes));
         }
     }
-
-    private void handleAddIsInFavourites(Integer userId, LocationInfo locationInfo) {
-        if (!userId.equals(0)) {
-            boolean locationIsInFavourites = favoriteLocationRepository.locationIsInFavourites(userId, locationInfo.getLocationId());
-            locationInfo.setIsInFavourites(locationIsInFavourites);
-        }
-    }
-
-    public Integer addFavoriteLocation(Integer userId, Integer locationId) {
-        User user = userService.getValidUser(userId);
-        Location location  = getValidLocation(locationId);
-        if (favoriteLocationRepository.locationIsInFavourites(userId, locationId)) {
-            throw new ForbiddenException(Error.LOCATION_ALREADY_IN_FAVOURITES.getMessage(), Error.LOCATION_ALREADY_IN_FAVOURITES.getErrorCode());
-        }
-        FavoriteLocation favoriteLocation = new FavoriteLocation();
-        favoriteLocation.setLocation(location);
-        favoriteLocation.setUser(user);
-        favoriteLocationRepository.save(favoriteLocation);
-        return favoriteLocation.getId();
-    }
-
 }
 
