@@ -8,10 +8,14 @@ import ee.valiit.bmxback.infrastructure.exception.PrimaryKeyNotFoundException;
 import ee.valiit.bmxback.persistence.favoritelocation.FavoriteLocation;
 import ee.valiit.bmxback.persistence.favoritelocation.FavoriteLocationRepository;
 import ee.valiit.bmxback.persistence.location.Location;
+import ee.valiit.bmxback.persistence.location.LocationMapper;
 import ee.valiit.bmxback.persistence.location.LocationRepository;
 import ee.valiit.bmxback.persistence.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ public class FavoriteLocationService {
     private final FavoriteLocationRepository favoriteLocationRepository;
     private final UserService userService;
     private final LocationRepository locationRepository;
+    private final LocationMapper locationMapper;
 
     public FavoriteLocation getValidFavoriteLocation(Integer userId, Integer locationId) {
         return favoriteLocationRepository.findByUserIdAndLocationId(userId, locationId)
@@ -42,6 +47,19 @@ public class FavoriteLocationService {
                     Error.LOCATION_ALREADY_IN_FAVOURITES.getErrorCode());
         }
         return addFavoriteLocation(location, user);
+    }
+
+    public List<LocationInfo> getFavoriteLocations(Integer userId) {
+        List<FavoriteLocation> favoriteLocations = favoriteLocationRepository.findFavoriteLocationsBy(userId);
+        List<Location> locations = new ArrayList<>();
+        for (FavoriteLocation favoriteLocation : favoriteLocations){
+            locations.add(favoriteLocation.getLocation());
+        }
+        List<LocationInfo> locationInfos = locationMapper.toLocationInfos(locations);
+        for (LocationInfo locationInfo : locationInfos){
+            locationInfo.setIsInFavourites(true);
+        }
+        return locationInfos;
     }
 
     public void removeFavouriteLocation(Integer userId, Integer locationId) {

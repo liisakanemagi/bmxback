@@ -1,11 +1,11 @@
 package ee.valiit.bmxback.controller.favoritelocation;
 
+import ee.valiit.bmxback.controller.location.dto.LocationInfo;
 import ee.valiit.bmxback.service.FavoriteLocationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,7 +17,13 @@ public class FavoriteLocationController {
     public Integer addFavoriteLocation(@RequestParam Integer userId, @RequestParam Integer locationId){
         return favoriteLocationService.handleAddFavoriteLocation(userId, locationId);
     }
-@DeleteMapping("/favorite/location")
+
+    @GetMapping("/favorite/locations")
+    public List<LocationInfo> getFavoriteLocations(@RequestParam Integer userId){
+        return favoriteLocationService.getFavoriteLocations(userId);
+    }
+
+    @DeleteMapping("/favorite/location")
     public void removeFavoriteLocation(@RequestParam Integer userId, @RequestParam Integer locationId){
        favoriteLocationService.removeFavouriteLocation(userId, locationId);
 }
