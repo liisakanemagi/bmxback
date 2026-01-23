@@ -34,7 +34,7 @@ public class TagService {
     }
 
     public List<TagInfo> findPendingTags() {
-        List<Tag> tags = tagRepository.findTagsBy(Status.ACTIVE.getCode());
+        List<Tag> tags = tagRepository.findTagsBy(Status.PENDING.getCode());
         return tagMapper.toTagInfos(tags);
     }
 
