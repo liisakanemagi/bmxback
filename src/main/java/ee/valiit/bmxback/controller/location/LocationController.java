@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.SequencedCollection;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,5 +41,11 @@ public class LocationController {
     @GetMapping("/location")
     public LocationDto getLocation(@RequestParam Integer locationId){
         return locationService.getLocation(locationId);
+    }
+
+    @GetMapping("/locations")
+    public List<LocationInfo> getAllLocations() {
+        return locationService.findFilteredLocations(0, 0, null, 0);
+        
     }
 }
